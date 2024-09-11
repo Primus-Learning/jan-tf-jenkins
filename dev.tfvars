@@ -1,1 +1,5 @@
 aws_region = "REGION"
+team_name = "TEAM_NAME"
+env_name = "ENV_NAME"
+backend_ami = "AMI"
+backend_instance_type = "INSTANCE_TYPE"
