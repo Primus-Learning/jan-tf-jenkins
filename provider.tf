@@ -1,4 +1,9 @@
 terraform {
+    backend "s3" {
+    bucket = "jan2024demo-bucket-pl-tf"
+    key    = "terraform.tfvars"
+    region = "REGION"
+  }
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -14,4 +19,3 @@ terraform {
 provider "aws" {
   region = "REGION"
 }
-
