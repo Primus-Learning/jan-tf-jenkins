@@ -38,8 +38,8 @@ pipeline{
           terraform workspace select -no-color ${params.team_name} || terraform workspace new -no-color ${params.team_name}
           terraform workspace show -no-color 
           terraform validate -no-color 
-          terraform plan -no-color -var-file $WORKSPACE/dev.tfvars
-          terraform apply -no-color -auto-aprove -var-file $WORKSPACE/dev.tfvars
+          terraform plan  -var-file $WORKSPACE/dev.tfvars -no-color
+          terraform apply  -var-file $WORKSPACE/dev.tfvars -no-color -auto-aprove
           """
         }
       }
@@ -54,8 +54,8 @@ pipeline{
             terraform workspace select -no-color ${params.team_name} || terraform workspace new -no-color ${params.team_name}
             terraform workspace show -no-color 
             terraform validate -no-color 
-            terraform plan -no-color -var-file $WORKSPACE/dev.tfvars
-            terraform destroy -no-color -auto-aprove -var-file $WORKSPACE/dev.tfvars
+            terraform plan  -var-file $WORKSPACE/dev.tfvars -no-color
+            terraform destroy  -var-file $WORKSPACE/dev.tfvars -no-color -auto-aprove
           """
         }
       }
