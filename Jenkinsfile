@@ -1,5 +1,5 @@
 pipeline{
-  agent any
+  agent { label 'ec2agent'}
     parameters{
         choice(name: 'action', choices: ['build', 'destroy'], description: 'Build Or Destroy Infrastructure')
         string(name: 'aws_region', defaultValue: 'us-east-1', description: 'region name')
