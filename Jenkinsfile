@@ -16,11 +16,11 @@ pipeline{
             sh"""
               echo "before update"
               cat dev.tfvars
-              sed -i 's/REGION/${params.aws_region}g $WORKSPACE/dev.tfvars'
-              sed -i 's/TEAM_NAME/${params.team_name}g $WORKSPACE/dev.tfvars'
-              sed -i 's/ENV_NAME/${params.env_name}g $WORKSPACE/dev.tfvars'
-              sed -i 's/AMI/${params.backend_ami}g $WORKSPACE/dev.tfvars'
-              sed -i 's/INSTANCE_TYPE/${params.backend_instance_type}g $WORKSPACE/dev.tfvars'
+              sed -i 's/REGION/${params.aws_region}/g $WORKSPACE/dev.tfvars'
+              sed -i 's/TEAM_NAME/${params.team_name}/g $WORKSPACE/dev.tfvars'
+              sed -i 's/ENV_NAME/${params.env_name}/g $WORKSPACE/dev.tfvars'
+              sed -i 's/AMI/${params.backend_ami}/g $WORKSPACE/dev.tfvars'
+              sed -i 's/INSTANCE_TYPE/${params.backend_instance_type}/g $WORKSPACE/dev.tfvars'
               echo "after update"
               cat dev.tfvars
             """
