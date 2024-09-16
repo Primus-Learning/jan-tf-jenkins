@@ -21,6 +21,7 @@ pipeline{
               sed -i 's/ENV_NAME/${params.env_name}/g' $WORKSPACE/dev.tfvars
               sed -i 's/AMI/${params.backend_ami}/g' $WORKSPACE/dev.tfvars
               sed -i 's/INSTANCE_TYPE/${params.backend_instance_type}/g' $WORKSPACE/dev.tfvars
+              sed -i 's/REGION/${params.aws_region}/g' $WORKSPACE/provider.tf
               echo "after update"
               cat dev.tfvars
             """
@@ -33,6 +34,12 @@ pipeline{
         script{
           sh"""
           echo "Aplying the Infra"
+          terraform init -no-color 
+          terraform workspace select -no-color ${params.team_name} || terraform workspace new -no-color ${params.team_name}
+          terraform workspace show -no-color 
+          terraform validate -no-color $WORKSPACE/dev.tfvars
+          terraform plan -no-color -var-file $WORKSPACE/dev.tfvars
+          terraform apply -no-color -auto-aprove -var-file $WORKSPACE/dev.tfvars
           """
         }
       }
@@ -42,7 +49,13 @@ pipeline{
       steps{
         script{
           sh"""
-          echo "Destroying the Infra"
+            echo "Destroying the Infra"
+            terraform init -no-color 
+            terraform workspace select -no-color ${params.team_name} || terraform workspace new -no-color ${params.team_name}
+            terraform workspace show -no-color 
+            terraform validate -no-color $WORKSPACE/dev.tfvars
+            terraform plan -no-color -var-file $WORKSPACE/dev.tfvars
+            terraform destroy -no-color -auto-aprove -var-file $WORKSPACE/dev.tfvars
           """
         }
       }
