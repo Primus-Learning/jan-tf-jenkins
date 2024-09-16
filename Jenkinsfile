@@ -39,7 +39,7 @@ pipeline{
           terraform workspace show -no-color 
           terraform validate -no-color 
           terraform plan  -var-file $WORKSPACE/dev.tfvars -no-color
-          terraform apply  -var-file $WORKSPACE/dev.tfvars -no-color -auto-aprove
+          terraform apply  -var-file $WORKSPACE/dev.tfvars -no-color -auto-approve
           """
         }
       }
@@ -55,7 +55,7 @@ pipeline{
             terraform workspace show -no-color 
             terraform validate -no-color 
             terraform plan  -var-file $WORKSPACE/dev.tfvars -no-color
-            terraform destroy  -var-file $WORKSPACE/dev.tfvars -no-color -auto-aprove
+            terraform destroy  -var-file $WORKSPACE/dev.tfvars -no-color -auto-approve
           """
         }
       }
