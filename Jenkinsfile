@@ -12,9 +12,8 @@ pipeline{
     stage("Clone"){
       steps{
         script{
-            git branch: 'jenkins', credentialsId: 'github-token', url: 'https://github.com/Primus-Learning/jan-tf-jenkins.git'
-            sh"ls -l"
-          echo "action: ${params.action}"
+            git branch: 'jenkins', credentialsId: 'githubcreds', url: 'https://github.com/Primus-Learning/jan-tf-jenkins.git'
+            echo "action: ${params.action}"
         }
       }
     }
